@@ -7,8 +7,8 @@ import {
   UpdateDateColumn,
   CreateDateColumn,
 } from 'typeorm';
+import { MaxLength, MinLength } from 'class-validator';
 import Lesson from './Lesson';
-import { MaxLength, MinLength} from 'class-validator'
 
 @Entity('content')
 export default class Content {
@@ -20,13 +20,13 @@ export default class Content {
   lesson: Lesson;
 
   @Column({
-    length: 200
+    length: 200,
   })
   @MaxLength(200, {
-    message: 'Description é no máximo de 200 caracteres'
+    message: 'Description é no máximo de 200 caracteres',
   })
   @MinLength(50, {
-    message: 'Description tem que ter no mínimo 50 caracteres'
+    message: 'Description tem que ter no mínimo 50 caracteres',
   })
   description: string;
 

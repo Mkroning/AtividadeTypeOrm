@@ -12,7 +12,9 @@ export default class ContentRepository extends Repository<Content> {
     const repository = getRepository(Content);
     const { description, linkContent, lesson } = request.body;
     const content = repository.create({
-      description, linkContent, lesson
+      description,
+      linkContent,
+      lesson,
     });
     const err = await validate(content);
 
@@ -33,8 +35,8 @@ export default class ContentRepository extends Repository<Content> {
 
     if (!toUpdate) {
       return response.status(400).json({
-        message: 'Content not found'
-      })
+        message: 'Content not found',
+      });
     }
 
     const { description, linkContent, lesson } = request.body;
@@ -58,15 +60,14 @@ export default class ContentRepository extends Repository<Content> {
     const repo = getRepository(Content);
     const toDelete = await repo.findOne(id);
 
-    if(!toDelete){
+    if (!toDelete) {
       return response.status(400).json({
-        message: 'Not found'
+        message: 'Not found',
       });
     }
     await repo.delete(toDelete);
     return response.status(201).json({
-      message: `${id} removido com sucesso!`
+      message: `${id} removido com sucesso!`,
     });
   }
-
 }

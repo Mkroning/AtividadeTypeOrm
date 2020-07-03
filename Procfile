@@ -1,1 +1,1 @@
-node app.ts
+node dist/server.js

@@ -10,18 +10,15 @@ export default class LessonRepository extends Repository<Lesson> {
     response: Response,
   ): Promise<unknown> {
     const repo = getRepository(Lesson);
-    const {
-      description, classe
-    } = request.body;
+    const { description, classe } = request.body;
     const lesson = repo.create({
-      description, classe
+      description,
+      classe,
     });
     const err = await validate(lesson);
 
     if (!err.length) {
-      return response.status(201).json(
-        await repo.save(lesson)
-      );
+      return response.status(201).json(await repo.save(lesson));
     }
     return response.status(400).json(err);
   }
@@ -36,18 +33,16 @@ export default class LessonRepository extends Repository<Lesson> {
 
     if (!toUpdate) {
       return response.status(404).json({
-        message: 'Lesson not found!'
+        message: 'Lesson not found!',
       });
     }
-    const {
-      description, classe
-    } = request.body;
+    const { description, classe } = request.body;
     if (description && classe) {
       toUpdate.description = description;
       toUpdate.classe = classe;
     }
 
-    const lessonUpdate = await repo.save(toUpdate)
+    const lessonUpdate = await repo.save(toUpdate);
 
     return response.status(201).json(lessonUpdate);
   }
@@ -61,13 +56,12 @@ export default class LessonRepository extends Repository<Lesson> {
     const toDelete = await repo.findOne(id);
     if (!toDelete) {
       return response.status(404).json({
-        message: `${id} não encontrado`
+        message: `${id} não encontrado`,
       });
     }
     await repo.delete(toDelete);
     return response.status(201).json({
-      message: `${id} sucess`
-    })
+      message: `${id} sucess`,
+    });
   }
-
 }

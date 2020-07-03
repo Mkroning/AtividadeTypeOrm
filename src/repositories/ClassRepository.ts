@@ -21,12 +21,10 @@ export default class ClassRepository extends Repository<Class> {
     const toUpdate = await repo.findOne(id);
     if (!toUpdate) {
       return response.status(404).json({
-        message: `${id} not found!`
+        message: `${id} not found!`,
       });
     }
-    const {
-      name, duration, lessons
-    } = request.body;
+    const { name, duration, lessons } = request.body;
     if (name && duration && lessons) {
       toUpdate.name = name;
       toUpdate.duration = parseInt(duration, 10);
@@ -36,6 +34,7 @@ export default class ClassRepository extends Repository<Class> {
     const lessonUpdate = await repo.save(toUpdate);
     return response.status(201).json(lessonUpdate);
   }
+
   public async deleteClass(
     request: Request,
     response: Response,
@@ -43,14 +42,14 @@ export default class ClassRepository extends Repository<Class> {
     const { id } = request.params;
     const repo = getRepository(Class);
     const toDelete = await repo.findOne(id);
-    if(!toDelete){
+    if (!toDelete) {
       return response.status(404).json({
-        message: `${id} not found!`
+        message: `${id} not found!`,
       });
     }
     await repo.delete(toDelete);
     return response.status(201).json({
-      message: `${id} deleted with sucess`
+      message: `${id} deleted with sucess`,
     });
   }
 }

@@ -7,9 +7,9 @@ import {
   OneToOne,
   ManyToOne,
 } from 'typeorm';
+import { MaxLength } from 'class-validator';
 import Content from './Content';
 import Class from './Class';
-import { MaxLength } from 'class-validator';
 
 @Entity('lesson')
 export default class Lesson {
@@ -17,10 +17,10 @@ export default class Lesson {
   id: string;
 
   @Column({
-    length: 150
+    length: 150,
   })
   @MaxLength(150, {
-    message: 'Description é no máximo de 150 caracteres'
+    message: 'Description é no máximo de 150 caracteres',
   })
   description: string;
 

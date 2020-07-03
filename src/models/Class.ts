@@ -7,8 +7,8 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import Lesson from './Lesson';
 import { MaxLength, MinLength } from 'class-validator';
+import Lesson from './Lesson';
 
 @Entity('class')
 export default class Class {
@@ -20,7 +20,7 @@ export default class Class {
     unique: true,
   })
   @MaxLength(50, {
-    message: 'Name tem que conter no maximo 50 caracteres'
+    message: 'Name tem que conter no maximo 50 caracteres',
   })
   name: string;
 
@@ -29,10 +29,10 @@ export default class Class {
 
   @Column()
   @MaxLength(60, {
-    message: 'Duration é no maximo de 60 horas'
+    message: 'Duration é no maximo de 60 horas',
   })
   @MinLength(20, {
-    message: 'Duration é no minimo  20 horas'
+    message: 'Duration é no minimo  20 horas',
   })
   duration: number;
 

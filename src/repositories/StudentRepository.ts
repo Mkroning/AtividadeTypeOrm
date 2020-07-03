@@ -10,11 +10,11 @@ export default class StudentRepository extends Repository<Student> {
     response: Response,
   ): Promise<unknown> {
     const repo = getRepository(Student);
-    const {
-      key, name, email
-    } = request.body;
+    const { key, name, email } = request.body;
     const newStudent = repo.create({
-      key, name, email
+      key,
+      name,
+      email,
     });
     const err = await validate(newStudent);
 
@@ -35,11 +35,11 @@ export default class StudentRepository extends Repository<Student> {
 
     if (!toUpdate) {
       return response.status(404).json({
-        message: `${id} not found`
+        message: `${id} not found`,
       });
     }
     const { name, key } = request.body;
-    if (name && key){
+    if (name && key) {
       toUpdate.name = name;
       toUpdate.key = key;
     }
@@ -55,15 +55,15 @@ export default class StudentRepository extends Repository<Student> {
     const repo = getRepository(Student);
     const toDelete = await repo.findOne(id);
 
-    if(!toDelete){
+    if (!toDelete) {
       return response.status(404).json({
-        message: `${id} not found`
+        message: `${id} not found`,
       });
     }
 
     await repo.delete(toDelete);
     return response.status(201).json({
-      message: `${id} deleted with success`
-    })
+      message: `${id} deleted with success`,
+    });
   }
 }
