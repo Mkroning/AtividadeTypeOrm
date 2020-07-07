@@ -1,2 +1,2 @@
-web src/server.ts
-node dist/server.js
+web dist/server.js
+node src/server.ts
