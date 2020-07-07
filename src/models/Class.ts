@@ -6,7 +6,6 @@ import {
   PrimaryGeneratedColumn,
   OneToMany,
 } from 'typeorm';
-
 import { MaxLength, MinLength } from 'class-validator';
 import Lesson from './Lesson';
 

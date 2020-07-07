@@ -20,24 +20,24 @@ contentRouter.get('/', async (request, response) => {
   response.json(await getRepository(Content).find());
 });
 
-contentRouter.put('/:id', async(request, response) =>{
-  try{
+contentRouter.put('/:id', async (request, response) => {
+  try {
     const repo = getCustomRepository(ContentRepository);
     return await repo.updateContent(request, response);
   } catch (err) {
     return response.status(200).json({
-      error : err.message
+      error: err.message,
     });
   }
 });
 
-contentRouter.delete('/:id', async (request, response) =>{
+contentRouter.delete('/:id', async (request, response) => {
   try {
     const repo = getCustomRepository(ContentRepository);
     return await repo.deleteContent(request, response);
   } catch (err) {
     return response.status(200).json({
-      error: err.message
+      error: err.message,
     });
   }
 });

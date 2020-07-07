@@ -26,18 +26,18 @@ lessonRouter.put('/:id', async (request, response) => {
     return await repo.updateLesson(request, response);
   } catch (err) {
     return response.status(200).json({
-      error: err.message
+      error: err.message,
     });
   }
 });
 
 lessonRouter.delete('/:id', async (request, response) => {
-  try{
+  try {
     const repo = getCustomRepository(LessonRepository);
     return await repo.deleteLesson(request, response);
-  } catch (err){
+  } catch (err) {
     return response.status(200).json({
-      error: err.message
+      error: err.message,
     });
   }
 });
