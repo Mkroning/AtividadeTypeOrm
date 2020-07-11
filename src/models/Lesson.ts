@@ -10,11 +10,12 @@ import {
 import { MaxLength } from 'class-validator';
 import Content from './Content';
 import Class from './Class';
+import Identifier from './Identifier';
 
 @Entity('lesson')
 export default class Lesson {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @Column(type => Identifier)
+  identification: Identifier;
 
   @Column({
     length: 150,
